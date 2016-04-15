@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# An example hook script to prepare a packed repository for use over
+# dumb transports.
+#
+# To enable this hook, rename this file to "post-update".
+
+#LAST_COMMIT=$(git log --oneline -1)
+LAST_COMMIT=$(git log -1 | sed '2d' | sed '2d' | sed '2d' | sed '1d')
+COMMIT_HASH=$(git log -1 | sed '2d' | sed '2d' | sed '2d' | head -1)
+COMMIT_TITLE=$(git log --oneline -1)
+
+echo $COMMIT_HASH
+echo $LAST_COMMIT
+echo $COMMIT_TITLE
+
+node templates/post-commit.js --c "$COMMIT_HASH" --m "$LAST_COMMIT" --ct "$COMMIT_TITLE"
