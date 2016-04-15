@@ -2,7 +2,7 @@ var fs = require('fs');
 
 //This is called when the post-commit hook is called
 var replacer 		= '###changelog-prepend###';
-var changelogPath	= 'templates/dev/changelog.txt'; //always relative to /.git/../
+var changelogPath	= 'dev/changelog.txt'; //always relative to /.git/../
 
 var args = process.argv.slice(2); 
 var message_arg 		= '';
